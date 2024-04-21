@@ -5,8 +5,16 @@ function Showitem({ product, AddCart }) {
   let [productCount, setProductCount] = useState(1);
 
   const addItem = () => {
-    AddCart({ ...product });
+    AddCart({ ...product, count: productCount });
+    productCount++
+    setProductCount(productCount)
   };
+  const removeItem = () => {
+    AddCart({ ...product, count: productCount });
+    productCount--
+    setProductCount(productCount)
+
+  }
 
   return (
     <div>
@@ -18,6 +26,7 @@ function Showitem({ product, AddCart }) {
       <button className="add-btn" onClick={() => addItem()}>
         +
       </button>
+      <button className="add-btn" onClick={() => removeItem()}>-</button>
     </div>
   );
 }

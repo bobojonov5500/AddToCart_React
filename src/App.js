@@ -17,15 +17,24 @@ function App() {
   const [newData, setNewData] = useState([]);
 
   const AddCart = (item) => {
-    setNewData([...newData, item]);
+    const alreadyExists = newData.find((e) => e.id === item.id);
+    if (alreadyExists) {
+      alreadyExists.count = item.count
+      alreadyExists.price += item.price
+      setNewData([...newData]);
+    }
+    else {
+      setNewData([...newData, item]);
+    }
   };
-  console.log(newData);
+
 
   const Remove = (id) => {
-    const filtered = newData.filter((e, index) => {
-      return id !== index;
+    const filtered = newData.filter((e) => {
+      return id === e.id;
     });
     setNewData(filtered);
+
   };
   const itemscount = newData.length;
 
